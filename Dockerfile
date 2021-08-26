@@ -8,11 +8,10 @@ WORKDIR /my_app
 COPY requirements.txt .
 
 # set env variables
-ENV MONGO_USERNAME=""
-ENV MONGO_PASSWORD=""
-ENV MONGO_DB_NAME=""
-ENV MONGO_DB_IP=""
-
+# ENV MONGO_USERNAME=""
+# ENV MONGO_PASSWORD=""
+# ENV MONGO_DB_NAME=""
+# ENV MONGO_DB_IP=""
 
 # install dependencies
 RUN pip install -r requirements.txt

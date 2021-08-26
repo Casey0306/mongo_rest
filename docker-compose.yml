@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  flask-rest:
+    build: ./
+    container_name: flask-rest
+    restart: always
+    environment:
+      MONGO_USERNAME: testuser
+      MONGO_PASSWORD: test1234
+      MONGO_DB_NAME: testdb
+      MONGO_DB_IP: 172.17.0.1
+    ports:
+      - 8000:8000
+
+  mongodb:
+    image: mongo:4.0
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: adminuser
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+
