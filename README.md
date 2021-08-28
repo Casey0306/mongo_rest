@@ -6,28 +6,11 @@
     Deploying tested on Ubuntu OS(16, 18 version)
     Procedure:
     - Install docker and docker-composer app on ubuntu;
-    - Clone app from the git to the working directory (git clone https://github.com/Casey0306/mongo_rest.git)
-    - Fill in next parameters in docker-compose.yml and mongo-init.js files:
-        MONGO_USERNAME: testuser - it's working db username
-        MONGO_PASSWORD: test1234 - it's working db password
-        MONGO_DB_NAME: testdb - it's name of working db
-        MONGO_DB_IP: 172.17.0.1 it's ip address of working db, docker host ip address
-        MONGO_INITDB_ROOT_USERNAME: adminuser - it's admin role username
-        MONGO_INITDB_ROOT_PASSWORD: adminpassword - it's admin role password
-    
-    This is command use admin role credentional's
-        db.auth('adminuser', 'adminpassword')
-    This is command use working db name    
-        db = db.getSiblingDB('testdb')
-    This is field's use working db credentional's
-        user: "testuser",
-        pwd: "test1234",
-    This is field use name of working db
-        db: "testdb"
+    - Clone app from the git to the working directory (_git clone https://github.com/Casey0306/mongo_rest.git_)
     - go to the mongo_rest directory and start docker composer script
-    sudo docker-compose up -d --build
+    _sudo docker-compose up -d --build_
     - Check container's
-    sudo docker-compose ps
+    _sudo docker-compose ps_
        Name                 Command               State            Ports          
      ------------------------------------------------------------------------------
      flask-rest   gunicorn run:app -w 2 --th ...   Up      0.0.0.0:8000->8000/tcp  
@@ -161,7 +144,7 @@
     Headers: 'Content-Type: application/json'
     Params: colname, id
     Success Response:
-    {
+    { 
     "result": {
         "description": "Super telephone",
         "id": "6126df285e7394202bd2ee84",
@@ -178,5 +161,32 @@
             }
         ]
     }
+    }
+    Code: HTTP 200 OK
+    
+    **Search products by parameters with many items:**
+    curl --request POST 'http://localhost:8000/find' --header 'Content-Type: application/json' --data-raw '{"collection": "new_collection", "name": "Nokia3340", "parameters": {"color": "blue", "camera": "1000x500pixels"}}'
+    Request:
+    URL: server_ip:8000/find
+    Method: POST
+    Headers: 'Content-Type: application/json'
+    Body:
+    {
+    "collection": "new_collection",
+    "name": "Nokia3340", 
+    "parameters": {"color" : "blue", "camera": "1000x500pixels"}
+    }
+    Success Response:
+    {
+    "result": [
+        {
+            "id": "612746bce6c823dfdecfc036",
+            "name": "Nokia3340"
+        },
+        {
+            "id": "612746bee6c823dfdecfc038",
+            "name": "Nokia3340"
+        }
+    ]
     }
     Code: HTTP 200 OK

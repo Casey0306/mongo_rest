@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from testapp import app
 from testapp import mondb
+from testapp import util
 
 
 @app.route('/create', methods=['POST'])
@@ -17,11 +18,7 @@ def create_item():
 @app.route('/find', methods=['POST'])
 def find_item_params():
     data = request.get_json()
-    dict_json = {}
-    if "parameters" in data and "name" not in data:
-        dict_json["parameters"] = data["parameters"]
-    if "name" in data and "parameters" not in data:
-        dict_json["name"] = data["name"]
+    dict_json = util.dict_parser(data)
     result = mondb.find_item(collection_name=data["collection"],
                              params=dict_json)
     return jsonify({"result": result}), 200
