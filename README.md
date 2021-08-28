@@ -111,7 +111,7 @@
     Code: HTTP 200 OK
     
     **Search products by parameters:**
-    curl --request POST 'http://localhost:8000/find' --header 'Content-Type: application/json' --data-raw '{"collection": "new_collection", "parameters": {"color" : "green"}}'
+    curl --request POST 'http://localhost:8000/find' --header 'Content-Type: application/json' --data-raw '{"collection": "new_collection", "parameters": {"color": "green"}}'
     Request:
     URL: server_ip:8000/find
     Method: POST
@@ -165,7 +165,8 @@
     Code: HTTP 200 OK
     
     **Search products by parameters with many items:**
-    curl --request POST 'http://localhost:8000/find' --header 'Content-Type: application/json' --data-raw '{"collection": "new_collection", "name": "Nokia3340", "parameters": {"color": "blue", "camera": "1000x500pixels"}}'
+    curl --request POST 'http://localhost:8000/find' --header 'Content-Type: application/json' --data-raw '{"collection": "new_collection", "name": "Nokia3340", "parameters": {"color": "blue", "camera": "3000x500pixels", "games": "snake"}}'
+    3000x500pixels"}}'
     Request:
     URL: server_ip:8000/find
     Method: POST
@@ -174,7 +175,7 @@
     {
     "collection": "new_collection",
     "name": "Nokia3340", 
-    "parameters": {"color" : "blue", "camera": "1000x500pixels"}
+    "parameters": {"color" : "blue", "games": "snake", "camera": "3000x500pixels"}
     }
     Success Response:
     {
